@@ -1,2 +1,2 @@
 # cssh-utility
-A custom ssh utility to aid developers and testers to ssh local devices with added features like device discovery and user login management and so on
+cssh also known as “custom ssh” is a linux based utility developed in C++ for Rpi environment. It is a wrapper around actual ssh utility and its aimed to support developers and testers who work with embedded devices connected in a local network. This utility has additional features like login management, device discovery and so on…

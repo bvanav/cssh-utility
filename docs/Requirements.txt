@@ -1,0 +1,11 @@
+cssh-utility
+------------
+
+High Level Requirements:
+-----------------------
+
+1. Able to discover ip and mac of devices connected to local network.
+2. Able to maintain and manage record of user login in
+3. Able to wake devices from deep sleep using magic packets [ Optional ] 
+4. Able to simulate remote [ Later ] 
+5. Implement proper logging architure for easy debugging [ TBD ]

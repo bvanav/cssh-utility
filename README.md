@@ -11,6 +11,8 @@
 ### Getting Started:
 This utility is designed to run on a Raspberry Pi. Users log in to the RPi and use the tool to access other devices. Create one-time ecosystem setup as illustrated below. In this setup, the Raspberry Pi is connected to the office LAN and simultaneously acts as a client to a WLAN router.
 
+![](https://github.com/bvanav/cssh-utility/blob/main/images/cssh-ecosystem.png)
+
 ###### To connect the Raspberry Pi to a WLAN from the command line:
 > sudo raspi-config 
 > → System Options 

@@ -49,6 +49,17 @@ source ~/.bashrc
 ```
 
 ### Usage:
+- Open git bash and log in to RPi and use below command.
+- If the user wishes to assign a custom name to a device for easier identification later, they can do so by adding an entry to the friendly_names.config file in the following format "friendly name" = "device PMI". Also multiple entries can be provided for the same device PMI if needed.
+```sh
+vi ~/cssh/friendly_names.config
+add a custom entry in format: "<friendly name>" = "<device PMI>"
+```
+- To view user-device history
+```sh
+cat ~/cssh/device_login_record.csv
+```
+
 > commads args are case-insensitive, Enjoy !
 - To SSH device: (default port is 10022)
 ```sh

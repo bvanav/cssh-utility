@@ -227,6 +227,9 @@ class ArgParser {
         fprintf(stderr, " To set verbose level: (debugging purpose) \n");
         fprintf(stderr, " \tcssh <any of above cmds> -v [dbg/info/warn/err]\n");
 
+        fprintf(stderr, " To view user-device history \n");
+        fprintf(stderr, " \tcat ~/cssh/device_login_record.csv\n");
+
         fprintf(stderr, "\n *commads are case-insensitive\n");
         fprintf(stderr, "\n | 'n'tid, 'd'evice, 'c'lose, 't'ype, 'o'utput, 'i'p  'p'ort |\n");
 

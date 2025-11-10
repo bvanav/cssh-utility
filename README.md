@@ -41,7 +41,7 @@ make
 ```
 #### Add an alias to your ~/.bashrc.
 ```sh
-alias cssh='sudo homeDir="~" ~/cssh/cssh'
+alias cssh='sudo homeDir=$HOME ~/cssh/cssh'
 ```
 #### If its first time make to reload shell configuration.
 ```sh

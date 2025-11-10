@@ -142,7 +142,7 @@ class System {
     static bool logOut(pid_t process_id){
         logi("Enter logOut");
         errno = 0;
-        if(kill(process_id, SIGTERM) == 0){
+        if(process_id != 0 && kill(process_id, SIGTERM) == 0){
             return true;
         }
         else{
@@ -165,7 +165,8 @@ class System {
             return false;
 
         system("clear");
-        execlp("ssh", "ssh", "-p", std::to_string(m_port).c_str(), "-o", (std::string("BindAddress=")+my_ip).c_str(), (std::string("root@")+target_ip).c_str(), nullptr);
+        
+        execlp("ssh", "ssh", "-p", std::to_string(m_port).c_str(), "-o", "UserKnownHostsFile=/dev/null", "-o", "StrictHostKeyChecking=no", "-o", (std::string("BindAddress=")+my_ip).c_str(), (std::string("root@")+target_ip).c_str(), nullptr);
 
         // This region will execute only when exec call fails
         loge("execSsh - execlp failed errno: %d", errno);

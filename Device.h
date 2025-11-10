@@ -193,6 +193,7 @@ class Device {
             loge("deserialize - fread failed - errno: %d", errno);
             std::fclose(fileptr);
             delete[] *inptr;
+            *inptr = nullptr;
             return errno;
         }
         std::fclose(fileptr);

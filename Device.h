@@ -859,11 +859,11 @@ class Device {
                 if(!strcmp((m_device_in_use_ptr+j)->mac, (m_device_cache_ptr+i)->mac)){
                     device.isBeingUsed = 1;
                     // from when it being used
-                    strcpy(device.startTime, (m_device_in_use_ptr+i)->startTime);
+                    strcpy(device.startTime, (m_device_in_use_ptr+j)->startTime);
                     // who is using the device
-                    strcpy(device.ntid, (m_device_in_use_ptr+i)->ntid);
+                    strcpy(device.ntid, (m_device_in_use_ptr+j)->ntid);
                     // session id
-                    device.processId = (m_device_in_use_ptr+i)->processId;
+                    device.processId = (m_device_in_use_ptr+j)->processId;
                     break;
                 }
             }

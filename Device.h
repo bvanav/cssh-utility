@@ -158,11 +158,14 @@ class Device {
             return errno;
         }
 
-        if(std::fwrite(outptr, sizeof(T), size, fileptr) != size){
-            loge("serialize - fwrite failed - errno: %d", errno);
-            std::fclose(fileptr);
-            return errno;
+        if(size != 0 ){
+            if(std::fwrite(outptr, sizeof(T), size, fileptr) != size){
+                loge("serialize - fwrite failed - errno: %d", errno);
+                std::fclose(fileptr);
+                return errno;
+            }
         }
+
         std::fclose(fileptr);
         return errno;
     }
@@ -185,6 +188,11 @@ class Device {
         if(std::fread(&size, sizeof(size), 1, fileptr) != 1){
             loge("deserialize - fread failed - errno: %d", errno);
             std::fclose(fileptr);
+            return errno;
+        }
+
+        if(size == 0){
+            logw("deserialize - reading empty file: %s", file_name);
             return errno;
         }
 
@@ -348,7 +356,7 @@ class Device {
 
         if(m_device_in_use_ptr){
             delete[] m_device_in_use_ptr;
-            m_device_cache_ptr = nullptr;
+            m_device_in_use_ptr = nullptr;
         }
     }   
 
@@ -536,6 +544,7 @@ class Device {
             else{
                 // update device in use cache
                 device_in_use_ptr = (DeviceInUseInfo* )std::realloc(m_device_in_use_ptr, (m_device_in_use_size+1)*sizeof(DeviceInUseInfo));
+                m_device_in_use_ptr = nullptr;
 
                 if(device_in_use_ptr == NULL){
                     loge("updateUserAccess - realloc failed errno: %d", errno);
@@ -552,6 +561,7 @@ class Device {
                 if(serialize<DeviceInUseInfo>(m_device_in_use_filename, device_in_use_ptr, m_device_in_use_size+1) != FError::NO_ERROR){
                     loge("updateUserAccess - serialize failed");
                     free(device_in_use_ptr);
+                    device_in_use_ptr = nullptr;
                     return false;
                 }
             }
@@ -604,7 +614,7 @@ class Device {
         }
         
         if(device_in_use_ptr)
-		free(device_in_use_ptr);
+		    free(device_in_use_ptr);
         return true;
     }
 

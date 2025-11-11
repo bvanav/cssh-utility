@@ -186,7 +186,8 @@ class Cssh : public Device {
                         sshDevice();
                     }
                     else{
-                        fprintf(stderr, " Opps unbale to conenct to device, would you like to scan the network and create cache(y/n): \n");
+                        clearInputBuffer();
+                        fprintf(stderr, " Opps unbale to connect to device, would you like to scan the network and create cache(y/n): ");
                         char ch = toupper(getchar());
                         if(ch == 'Y'){
                             state = CACHE_CREATE;

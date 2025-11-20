@@ -158,13 +158,16 @@ class Cssh : public Device {
                         setNewConnectionUserRequest(dev_index-1);
                         if(isDeviceBingUsed()){ // if get_my_ip fail it will worng consider forc login for user
                             // std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			                clearInputBuffer();
-                            fprintf(stderr, " WARNING: This might logout %s session\n",m_available_devices[dev_index-1].ntid);
-                            fprintf(stderr, " Confirm to force connect(y/n)? ");
-                            char ch = toupper(getchar()); 
-                            if(ch != 'Y'){
-                                state = END;
-                                break;
+			                // Check if its the same person loging in
+                            if(m_ntid != m_available_devices[dev_index-1].ntid) {
+			                    clearInputBuffer();
+                                fprintf(stderr, " WARNING: This might logout %s session\n",m_available_devices[dev_index-1].ntid);
+                                fprintf(stderr, " Confirm to force connect(y/n)? ");
+                                char ch = toupper(getchar()); 
+                                if(ch != 'Y'){
+                                    state = END;
+                                    break;
+                                }
                             }
                         }
                         state = CONNECT;

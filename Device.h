@@ -89,7 +89,6 @@ class Device {
     private:
     std::string m_friendly_name;
     std::string m_pmi;
-    std::string m_ntid;
     
     DeviceInfo* m_device_cache_ptr = nullptr;
     size_t m_device_cache_size = 0;
@@ -112,9 +111,9 @@ class Device {
     std::vector<ConnectionInfo> m_available_devices;
     std::vector<UserDeviceInfo> m_user_devices; // ntid specific device information
     std::string m_ip;
+    std::string m_ntid;
 
     private:
-
     void toLower(std::string &s){
         std::transform(s.begin(), s.end(), s.begin(), 
         [](char c){

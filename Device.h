@@ -502,7 +502,7 @@ class Device {
                 return false;
             }
 
-            if(m_available_devices[m_user_requested_index].isBeingUsed){
+            if(m_available_devices[m_user_requested_index].isBeingUsed && m_ntid != m_available_devices[m_user_requested_index].ntid){
 
                 strcpy(entry.ntid, m_available_devices[m_user_requested_index].ntid); // previous user of the device
                 strcpy(entry.pmi, m_pmi.c_str());

@@ -126,8 +126,14 @@ class Cssh : public Device {
                 
                 case DEVICE_INFO:
                     logi("Enter state DEVICE_INFO");
+                    if(!System::isWlanAvailable()){
+                        fprintf(stderr, " Oops WLAN Unavailable! Try - ifconfig wlan0\n");
+                        state = END;
+                        break;
+                    }
                     // find user requested device info in the device info cache
                     if(!loadNewConnectionDeviceInfo()){
+                        clearInputBuffer();
                         fprintf(stderr, " Opps some issue in finding device, would you like to update cache and try again(y/n)? ");
                         char ch = toupper(getchar());
                         (ch == 'Y') ? (state = CACHE_CREATE) : (state = END);

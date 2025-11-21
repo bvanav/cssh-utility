@@ -61,6 +61,11 @@ class System {
     }
 
     public:
+    static bool isWlanAvailable(void){
+        char my_ip[16];
+        return get_my_ip(my_ip, "wlan0");
+    }
+
     static bool arp(ArpOut* cmdout, uint8_t &count){
         logi("Enter arp");
         errno = 0;
